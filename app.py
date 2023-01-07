@@ -1,5 +1,6 @@
 import flask
 from flask import Flask, request, jsonify
+#import sms_provider
 
 app = flask.Flask(__name__)
 
@@ -71,8 +72,8 @@ def add_item():
     return jsonify({''+str(item)+'success': True})
 
 
-@app.route('/api/notify', methods=['POST'])
-def notify():
+@app.route('/api/notifyDpt', methods=['POST'])
+def notifyDpt():
     # Retrieve the request data
     data = request.get_json()
     message = data.get('message')
@@ -83,6 +84,34 @@ def notify():
 
     # Return the response message as JSON
     return jsonify({'message': response_message +"| "+message})
+
+
+
+
+@app.route('/send_sms', methods=['PUT'])
+def send_sms():
+  phone_number = request.args.get('phone_number')
+  message = request.args.get('message')
+  provider_id = request.args.get('sms_provider_id')
+
+  # Check if required parameters are present
+  if not phone_number or not message:
+    return "Missing required parameters to : "+str(phone_number), 400
+
+  # Use SMS provider module to send the message
+  #sms_provider.send_sms(phone_number, message, provider_id)
+
+  return "SMS sent successfully to : "+str(phone_number), 200
+
+@app.route('/send_email', methods=['POST'])
+def create_email():
+    email_number = request.json.get('email')
+    email_provider = request.json.get('email_provider_id')
+    email_content = request.json.get('email_content')
+    if not email_number or not email_provider or not email_content:
+    # Create a new email using the email number, email provider, and email content
+    #create_email(email_number, email_provider_id, email_content)
+        return 'Email sent succesfully to :'+str(email_number), 201
 
 if __name__ == '__main__':
     app.run()
