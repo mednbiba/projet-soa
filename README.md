@@ -1,4 +1,4 @@
-API Endpoints
+#API Endpoints
 The API has the following endpoints:
 
 POST /submit
