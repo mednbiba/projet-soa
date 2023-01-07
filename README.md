@@ -57,3 +57,25 @@ isapproved: a boolean value indicating whether the certificate is approved or no
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `null` | `null` | **null |
+
+
+```http
+ POST /send_SMS
+ sends sms to number:
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `number` | `int` | **Destination Number |
+| `content` | `string` | **Destination Content |
+
+```http
+ POST /send_email
+ sends sms to number:
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | `int` | **Destination Number |
+| `email_provider_id` | `string` | **Destination Provider |
+| `email_content` | `string` | **Destination Content |
